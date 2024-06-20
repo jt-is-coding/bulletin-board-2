@@ -10,4 +10,10 @@
 #
 class Board < ApplicationRecord
   validates(:name, presence: true, uniqueness: true)
+
+  def username
+    matching_users = User.where({ :id => self.user_id })
+    the_user = matching_users.at(0)
+    return the_user.email
+  end
 end

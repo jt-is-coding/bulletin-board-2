@@ -31,7 +31,7 @@ task({ :sample_data => :environment }) do
 
     rand(10..50).times do
       post = Post.new
-      post_user_id = User.all.sample.id
+      post.user_id = User.all.sample.id
       post.board_id = board.id
       post.title = rand < 0.5 ? Faker::Commerce.product_name : Faker::Job.title
       post.body = Faker::Lorem.paragraphs(number: rand(1..5), supplemental: true).join("\n\n")

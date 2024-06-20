@@ -15,4 +15,10 @@ class Post < ApplicationRecord
   validates(:title, presence: true)
   validates(:body, presence: true)
   validates(:expires_on, presence: true)
+
+  def username
+    matching_users = User.where({ :id => self.user_id })
+    the_user = matching_users.at(0)
+    return the_user.email
+  end
 end
